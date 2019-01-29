@@ -1,6 +1,6 @@
 import React,{Fragment} from 'react';
 
-const index = ({id,name,born,deceased,description,image}) => {
+const index = ({name,born,deceased,description,image}) => {
     return (
         <Fragment>
             <img src={image} alt={name} style={{maxWidth:300}}/>
