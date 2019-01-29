@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import { Link, Route,Redirect } from 'react-router-dom';
 import Writer from './Writer';
-import NotFound from '../Errors/404';
+import {NotFound} from '../Errors';
 
 const index = ({ match:{url},writers}) => {
     return (
@@ -16,12 +16,12 @@ const index = ({ match:{url},writers}) => {
 
             <Route path={url} render={()=> <h1> 작가를 선택해주세요</h1>}/>
             <Route path={`${url}/:writerId`} 
-            render={({match})=> {
-                const writer = writers.find(writer=> writer.id === match.params.writerId)
+            render={(props)=> {
+                const writer = writers.find(writer=> writer.id === props.match.params.writerId)
                 if (!writer){
                     return <NotFound/>
                 }
-                return <Writer {...writer}/>
+                return <Writer {...props} {...writer}/>
             }}/>
             </Fragment>
     );
